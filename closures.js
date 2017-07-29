@@ -1,13 +1,16 @@
-function makeAdder(x) {
-  return function(y) {
-    return x + y;
-  };
+function showName (firstName, lastName) {
+	var nameIntro = "Your name is ";
+
+    	// this inner function has access to the outer function's variables, including the parameter​
+	function makeFullName () {
+    console.log(firstName)
+    console.log(lastName)
+    console.log(nameIntro)
+    let test = '123'
+		return nameIntro + firstName + " " + lastName;
+	}
+  // console.log(test) // not in scope so fails
+	return makeFullName ();
 }
 
-var add5 = makeAdder(5);
-var add10 = makeAdder(10);
-var add15 = makeAdder(15);
-
-console.log(add5(2));  // 7
-console.log(add10(2)); // 12
-console.log(add15(2)); // 12
+console.log(showName ("Alan", "Jordan")); // Your name is Amy Simmons
