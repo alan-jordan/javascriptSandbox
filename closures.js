@@ -13,4 +13,4 @@ function showName (firstName, lastName) {
 	return makeFullName ();
 }
 
-console.log(showName ("Alan", "Jordan")); // Your name is Amy Simmons
+console.log(showName ("Alan", "Jordan")); 
