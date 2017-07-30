@@ -14,3 +14,18 @@ function showName(firstName, lastName) {
 }
 
 console.log(showName("Alan", "Jordan"));
+
+
+function dwightJob(title) {
+    return function(prefix){
+        return `${prefix} ${title}`
+    }
+}
+
+var sales = dwightJob('Salesman')
+var manager = dwightJob('Manager')
+
+console.log(sales('Top'))
+console.log(manager('Assistant to the regional'))
+console.log(manager('Regional'))
+
