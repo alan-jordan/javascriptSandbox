@@ -1,26 +1,22 @@
-function get(url){
-	return new Promise(function(succeed, fail){
-		var req = new XMLHttpRequest();
-		req.open("GET", url, true);
-		req.addEventListener("load", function(){
-			if(req.status < 400){
-				succeed(req.responseText);
-			}else{
-				fail(new Error("Request failed: " + req.statusText));
-			}
-		});
-		req.addEventListener("error", function(){
-			fail(new Error("Network error"));
-		});
-		req.send(null);
-	});
+function process(value) {
+  return new Promise(function (resolve, reject) {
+    var count = 0, timeout;
+    timeout = setInterval(function () { 
+      console.log('iteration ' + count);
+      if (count > 5 && value !== 'fail') { resolve(true); clearInterval(timeout); }
+      else if (count > 5 && value === 'fail') { reject('Operation timed out.'); clearInterval(timeout); }
+      count += 1; 
+    }, 500); 
+  });
 }
 
-get('www.google.com')
-  .then((error, reponse) => {
-    error ? console.log(`there was an error - ${error}`) : console.log(response.body)
-  })
+// Then to test it (let's say in `console`) try something line:
+var a = process(); 
 
-//fails as XMLHttpRequest isn't working. Would use superagent for this.
-// But basically. If this errors, it will just log out the error
-// If not, it will log out the response body from the api call
+a
+  .then(function (value) {
+    console.log('Operation completed successfully.  Value recieved: ' + value);
+  })
+  .catch(function (reason) { 
+    console.log(reason); 
+  });
